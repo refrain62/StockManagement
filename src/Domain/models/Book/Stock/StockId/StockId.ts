@@ -1,4 +1,4 @@
-import { ValueObject } from '../../shared/ValueObject';
+import { ValueObject } from '../../../shared/ValueObject';
 import { nanoid } from 'nanoid';
 
 type StockIdValue = string;

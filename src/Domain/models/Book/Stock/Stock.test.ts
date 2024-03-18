@@ -1,7 +1,7 @@
 import { Stock } from './Stock';
 import { QuantityAvailable } from './QuantityAvailable/QuantityAvailable';
 import { Status, StatusEnum } from './Status/Status';
-import { StockId } from './StockId';
+import { StockId } from './StockId/StockId';
 
 // nanoid() をモックする
 jest.mock('nanoid', () => ({
