@@ -1,5 +1,5 @@
 import { isEqual } from "lodash";
-import { ValueObject } from "./shared/ValueObject";
+import { ValueObject } from "../../shared/ValueObject";
 
 export class BookId extends ValueObject<string, 'BookId'> {
   static MAX_LENGTH = 13;

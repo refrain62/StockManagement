@@ -1,4 +1,4 @@
-import { ValueObject } from "../../BookId/shared/ValueObject";
+import { ValueObject } from "../../../shared/ValueObject";
 
 type QuantityAvailableValue = number;
 export class QuantityAvailable extends ValueObject<
