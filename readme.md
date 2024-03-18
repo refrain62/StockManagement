@@ -85,3 +85,9 @@ test('sayHello', () => {
 ```
 $ jest src/sayHello.test.ts
 ```
+
+# 必要パッケージのインストール
+```
+$ npm i lodash nanoid@3 #バージョンはは3系を指定してください
+$ npm i -D @types/lodash
+```
