@@ -1,4 +1,4 @@
-import { ValueObject } from 'Domain/models/shared/ValueObject';
+import { ValueObject } from "../../BookId/shared/ValueObject";
 
 export enum StatusEnum {
   InStock = 'InStock',
