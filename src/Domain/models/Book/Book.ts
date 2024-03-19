@@ -52,6 +52,10 @@ export class Book {
     this._stock.decreaseQuantity(amount)
   }
 
+  isDuplicateISBN(isbn: BookId) {
+    // 既に登録されているISBNかどうかを確認する処理
+  }
+
   get bookId(): BookId {
     return this._bookId
   }
