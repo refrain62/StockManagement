@@ -54,6 +54,7 @@ export class Book {
 
   isDuplicateISBN(isbn: BookId) {
     // 既に登録されているISBNかどうかを確認する処理
+    isbn = isbn
   }
 
   get bookId(): BookId {

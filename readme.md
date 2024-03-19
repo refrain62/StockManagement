@@ -86,8 +86,34 @@ test('sayHello', () => {
 $ jest src/sayHello.test.ts
 ```
 
-# 必要パッケージのインストール
+## 必要パッケージのインストール
 ```
 $ npm i lodash nanoid@3 #バージョンはは3系を指定してください
 $ npm i -D @types/lodash
 ```
+
+## prismaのセットアップ
+```
+$ npm install prisma --save-dev
+$ npm install @prisma/client
+```
+セットアップ
+```
+$ npx prisma init --datasource-provider postgresql
+```
+.envのDATABASE_URLをdocker-compose.ymlに定義した内容に合わせて変更
+```
+DATABASE_URL="postgresql://postgres:password@localhost:5432/localdb"
+```
+
+## postgreSQLの実行
+```
+$ docker-compose up -d
+```
+
+## マイグレーション実行
+```
+$ npx prisma migrate dev --name init
+```
+
+
