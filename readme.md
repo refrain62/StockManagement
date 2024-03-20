@@ -121,8 +121,13 @@ $ npx prisma migrate dev --name init
 $ npm install express
 $ npm i --save-dev @types/express
 ```
-サーバーの起動
+## サーバーの起動
 ```
 $ npx ts-node src/Presentation/Express/index.ts
+```
+
+## ESLintの導入
+```
+$ npm install --save-dev eslint eslint-plugin-import eslint-import-resolver-typescript @typescript-eslint/eslint-plugin
 ```
 
