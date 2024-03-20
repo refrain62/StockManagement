@@ -1,9 +1,9 @@
 import { ISBNDuplicationCheckDomainService } from './ISBNDuplicationCheckDomainService';
 import { InMemoryBookRepository } from 'Infrastructure/InMemory/Book/InMemoryBookRepository';
-import { BookId } from '../../../models/Book/BookId/BookId';
-import { Book } from '../../../models/Book/Book';
-import { Title } from '../../../models/Book/Title/Title';
-import { Price } from '../../../models/Book/Price/Price';
+import { BookId } from '../../models/Book/BookId/BookId';
+import { Book } from '../../models/Book/Book';
+import { Title } from '../../models/Book/Title/Title';
+import { Price } from '../../models/Book/Price/Price';
 
 describe('ISBNDuplicationCheckDomainService', () => {
   let isbnDuplicationCheckDomainService: ISBNDuplicationCheckDomainService;

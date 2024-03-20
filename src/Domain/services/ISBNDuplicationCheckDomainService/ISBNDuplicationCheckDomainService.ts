@@ -1,5 +1,5 @@
-import { BookId } from "../BookId/BookId";
-import { IBookRepository } from "../IBookRepository";
+import { BookId } from "../../models/Book/BookId/BookId";
+import { IBookRepository } from "../../models/Book/IBookRepository";
 
 // アプリケーションサービスと混同させないために、
 // ドメインサービスの命名規則は[処理名]DomainServiceとするのがオススメ。
