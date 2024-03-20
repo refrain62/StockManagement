@@ -9,10 +9,15 @@ import { Stock } from 'Domain/models/Book/Stock/Stock';
 import { StockId } from 'Domain/models/Book/Stock/StockId/StockId';
 import { Title } from 'Domain/models/Book/Title/Title';
 import { PrismaClientManager } from '../PrismaClientManager';
+import { injectable, inject } from 'tsyringe';
 
+@injectable()
 export class PrismaBookRepository implements IBookRepository {
   // ClientManagerをDIする
-  constructor(private clientManager: PrismaClientManager) {}
+  constructor(
+    @inject('IDataAccessClientManager')
+    private clientManager: PrismaClientManager
+    ) {}
 
   // DBのstatusの型とドメイン層のStatus型が異なるので変換する
   private StatusDataMapper(

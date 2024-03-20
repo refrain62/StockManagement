@@ -131,3 +131,7 @@ $ npx ts-node src/Presentation/Express/index.ts
 $ npm install --save-dev eslint eslint-plugin-import eslint-import-resolver-typescript @typescript-eslint/eslint-plugin
 ```
 
+## DIコンテナの導入
+```
+$ npm install --save tsyringe reflect-metadata
+```
