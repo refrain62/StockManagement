@@ -1,12 +1,24 @@
 import { Book } from "./Book";
 import { BookId } from "./BookId/BookId";
+import { IDomainEventPublisher } from "Domain/shared/DomainEvent/IDomainEventPublisher";
 
 export interface IBookRepository {
-  save(book: Book): Promise<void>;
+  save(
+    book: Book,
+    domainEventPublisher: IDomainEventPublisher
+    ): Promise<void>;
 
-  update(book: Book): Promise<void>;
+  update(
+    book: Book,
+    domainEventPublisher: IDomainEventPublisher
+    ): Promise<void>;
   
-  delete(bookId: BookId): Promise<void>;
+  delete(
+    book: Book,
+    domainEventPublisher: IDomainEventPublisher
+    ): Promise<void>;
   
-  find(bookId: BookId): Promise<Book | null>;
+  find(
+    bookId: BookId
+    ): Promise<Book | null>;
 }

@@ -18,6 +18,7 @@ import {
 // import { PrismaBookRepository } from 'Infrastructure/Prisma/Book/PrismaBookRepository';
 // import { PrismaClientManager } from 'Infrastructure/Prisma/PrismaClientManager';
 // import { PrismaTransactionManager } from 'Infrastructure/Prisma/PrismaTransactionManager';
+import { BookLogSubscriber } from 'Application/shared/DomainEvent/subscribers/BookLogSubscriber';
 
 const app = express()
 const port = 3000
@@ -28,9 +29,12 @@ app.get('/', (_, res) => {
 
 app.listen(port, () => {
   console.log(`Express app Listening on port ${port}`)
-})
 
-// JSON形式のリクエストボディを正しく解析数rために必要
+  // サブスクライバーを登録する
+  container.resolve(BookLogSubscriber);
+});
+
+// JSON形式のリクエストボディを正しく解析するために必要
 app.use(express.json())
 
 app.post('/book', async (req, res) => {

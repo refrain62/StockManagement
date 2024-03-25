@@ -7,8 +7,9 @@ import { Price } from 'Domain/models/Book/Price/Price';
 import { QuantityAvailable } from 'Domain/models/Book/Stock/QuantityAvailable/QuantityAvailable';
 import { Status, StatusEnum } from 'Domain/models/Book/Stock/Status/Status';
 import { Stock } from 'Domain/models/Book/Stock/Stock';
-import prisma from '../prismaClient';
 import { PrismaClientManager } from '../PrismaClientManager';
+import prisma from '../prismaClient';
+import { IDomainEventPublisher } from 'Domain/shared/DomainEvent/IDomainEventPublisher';
 
 describe('PrismaBookRepository', () => {
   beforeEach(async () => {
@@ -22,6 +23,11 @@ describe('PrismaBookRepository', () => {
   // PrismaBookRepositoryにclientManagerを渡すように変更
   const repository = new PrismaBookRepository(clientManager);
 
+  // モックのパブリッシャーを用いる
+  const mockDomainEventPublisher = {
+    publish: jest.fn(),
+  } as IDomainEventPublisher;
+
   test('saveした集約がfindで取得できる', async () => {
     const bookId = new BookId('9784167158057');
     const title = new Title('吾輩は猫である');
@@ -30,7 +36,9 @@ describe('PrismaBookRepository', () => {
       currency: 'JPY',
     });
     const book = Book.create(bookId, title, price);
-    await repository.save(book);
+    await repository.save(book, mockDomainEventPublisher);
+
+    expect(mockDomainEventPublisher.publish).toHaveBeenCalledTimes(1);
 
     const createdEntity = await repository.find(bookId);
     expect(createdEntity?.bookId.equals(bookId)).toBeTruthy();
@@ -62,7 +70,9 @@ describe('PrismaBookRepository', () => {
       stock
     );
 
-    await repository.update(book);
+    await repository.update(book, mockDomainEventPublisher);
+    expect(mockDomainEventPublisher.publish).toHaveBeenCalledTimes(1);
+
     const updatedEntity = await repository.find(createdEntity.bookId);
     expect(updatedEntity?.bookId.equals(book.bookId)).toBeTruthy();
     expect(updatedEntity?.title.equals(book.title)).toBeTruthy();
@@ -80,7 +90,9 @@ describe('PrismaBookRepository', () => {
     const readEntity = await repository.find(createdEntity.bookId);
     expect(readEntity).not.toBeNull();
 
-    await repository.delete(createdEntity.bookId);
+    await repository.delete(createdEntity, mockDomainEventPublisher);
+    expect(mockDomainEventPublisher.publish).toHaveBeenCalledTimes(1);
+
     const deletedEntity = await repository.find(createdEntity.bookId);
     expect(deletedEntity).toBeNull();
   });
